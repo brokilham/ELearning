@@ -5,18 +5,22 @@
 <div class="page-bar">
     <ul class="page-breadcrumb">
         <li>
-            <a href="index.html">Home</a>
+            <a href="/master_materi/main_master">Home</a>
             <i class="fa fa-circle"></i>
         </li>
         <li>
-            <span>Dashboard</span>
+            <span>Daftar Materi</span>
         </li>
     </ul>                    
 </div>
 <!-- END PAGE BAR -->
 <!-- BEGIN PAGE TITLE-->
-<h3 class="page-title"> Dashboard
+
+<h3 class="page-title"> 
+    <!-- 
+    Dashboard
     <small>dashboard & statistics</small>
+    -->
 </h3>
 <!-- END PAGE TITLE-->
 <!-- END PAGE HEADER-->
@@ -132,12 +136,12 @@
                                                 '<i class="icon-tag"></i>Delete</a>'+
                                         '</li>'+          
                                         '<li>'+
-                                            '<a id="anchor_edit" value='+full['id']+' >'+
+                                            '<a id="anchor_edit" value='+full['id']+' data-toggle="modal" data-target="#modal-update-materi">'+
                                                 '<i class="icon-tag"></i>Edit</a>'+
                                         '</li>'+    
                                         '<li>'+
-                                            '<a id="anchor_comment" value='+full['id']+' >'+
-                                                '<i class="icon-tag"></i>Comment</a>'+
+                                            '<a id="anchor_detail"  href="../master_materi/detail_master_materi?id_materi='+full['id']+'" target="_blank">'+
+                                                '<i class="icon-tag"></i>Detail</a>'+
                                         '</li>'+                                 
                                     '</ul>'+                          
                                 '</div>';
@@ -154,9 +158,12 @@
             $.ajax({
                 type:"POST",
                 url:'./create',
-                data:$('#frm-post-materi').serialize(),
+                data: new FormData($("#frm-post-materi")[0]), //$('#frm-post-materi').serialize(),
                 headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') },               
                 dataType: 'json',
+                processData: false,
+                contentType: false,
+                async: true,
                 success: function(data){    
                     console.log(data);       
                     if (data.code == "S"){
@@ -197,20 +204,19 @@
         });
     })
 
-  $("#btn_add_row_file").on("click",function(){
-    $('#t_file_pendukung > tbody:last-child').append(
-        '<tr>'
-            +'<td>'
-                +'<input type="file" class="form-control" name="txt_file" id="txt_sis_path_foto" accept="image/Jpeg" />'
-            +'</td>'
-            +'<td> &nbsp;'
-                +'<a class="btn btn-icon-only red">'
-                    +'<i class="fa fa-times"></i>'
-                +'</a>'
-            +'</td><br>'       
-        +'</tr>'
-    )
-  })
+    $("#btn_add_row_file").on("click",function(){
+            var jum_file_pendukung = parseInt($("#txt_jum_file_pendukung").val())+1;
+            $('#tes').append(
+                '<div class="form-group">'
+                    +'<label class="col-md-3 control-label "></label>'
+                    +'<div class="col-md-9">'
+                        +'<input type="file" class="form-control" name="txt_file_'+jum_file_pendukung+'" id="txt_file_'+jum_file_pendukung+'" accept="image/Jpeg" />'                  
+                    +'</div>'
+                +'</div>');
+            $("#txt_jum_file_pendukung").val(jum_file_pendukung);        
+    })
+
+   
     
 
 });

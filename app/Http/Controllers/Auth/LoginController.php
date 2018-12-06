@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use auth;
 class LoginController extends Controller
 {
     /*
@@ -25,7 +25,24 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/home';
+
+    public function redirectTo()
+    {
+        if(Auth::check()) {
+            if (Auth::user()->hak_akses === 'mahasiswa') {
+                //return view('backend.katalog.main');
+                return '/katalog/main_katalog';
+            }
+            elseif (Auth::user()->hak_akses  === 'dosen') {
+                //return view('backend.master_materi.main');
+                return '/master_materi/main_master';
+            }
+        }
+        else{
+            return '/';
+        }  
+    }
 
     /**
      * Create a new controller instance.

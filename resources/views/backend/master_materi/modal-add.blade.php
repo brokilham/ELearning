@@ -7,7 +7,7 @@
                 <h4 class="modal-title">New Materi</h4>
             </div>
             <div class="modal-body">
-                <form id = "frm-post-materi" class="form-horizontal" role="form" method="POST">
+                <form  class="form-horizontal" id = "frm-post-materi" action="#" method="POST" enctype="multipart/form-data">
                     <div class="form-body">
                        
                         <div class="form-group">
@@ -34,23 +34,23 @@
                                 <textarea class="form-control autosizeme" rows="4" data-autosize-on="true" name="txt_deskripsi" id="txt_deskripsi"></textarea>                                             
                             </div>
                         </div>  
-                        <div class="form-group">
-                            <label class="col-md-3 control-label ">File Pendukung</label>
+                        <div class="form-group" style="display:none">
+                            <label class="col-md-3 control-label">hidden variable</label>
                             <div class="col-md-9">
-                                <table id="t_file_pendukung">
-                                    <tr>
-                                        <td>
-                                            <input type="file" class="form-control" name="txt_file" id="txt_sis_path_foto"  />           
-                                        </td>
-                                        <td> &nbsp;
-                                            <a class="btn btn-icon-only red">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </td>                                 
-                                    </tr>
-                                </table>                                                    
+                                <input type="text" class="form-control"  id="txt_jum_file_pendukung" name="txt_jum_file_pendukung" value="1">
                             </div>
-                        </div>  
+                        </div>
+                        <div id ="tes">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label ">File Pendukung</label>
+                                <div class="col-md-9">
+                                    <input type="file" class="form-control" name="txt_file_1" id="txt_file_1"  />                                 
+                                    <!--<a class="btn btn-icon-only red">
+                                        <i class="fa fa-times"></i>
+                                    </a>-->                                                                                             
+                                </div>
+                            </div>                     
+                        </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label "></label>
                             <div class="col-md-9">

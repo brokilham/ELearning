@@ -21,24 +21,14 @@
                 <!-- END SIDEBAR TOGGLER BUTTON -->
             </li>
             <!-- DOC: To remove the search box from the sidebar you just need to completely remove the below "sidebar-search-wrapper" LI element -->
-            <li class="nav-item start ">
-                <a href="dashboard_2.html" class="nav-link ">
-                    <i class="icon-bulb"></i>
-                    <span class="title">Dashboard</span>
-                </a>
-            </li>  
-            <li class="nav-item start ">
-                <a href="dashboard_2.html" class="nav-link ">
-                    <i class="icon-bulb"></i>
-                    <span class="title">Katalog</span>
-                </a>
-            </li>     
-            <li class="nav-item start ">
-                <a href="dashboard_2.html" class="nav-link ">
-                    <i class="icon-bulb"></i>
-                    <span class="title">Materi</span>
-                </a>
-            </li>         
+            @foreach ($datas['menu'] as $menu)
+                <li class="nav-item start ">
+                    <a href="{{ AppHelper::parseDomain($menu->route)}}" class="nav-link ">
+                        <i class="{{ $menu->icon}}"></i>
+                        <span class="title">{{ $menu->nama}}</span>
+                    </a>
+                </li> 
+            @endforeach    
         </ul>
         <!-- END SIDEBAR MENU -->
         <!-- END SIDEBAR MENU -->
